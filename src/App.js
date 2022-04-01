@@ -16,7 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/cards/:id" element={<Card />} />
+          <Route path="/monsters/:id" element={<Card />} />
         </Routes>
         <Footer />
       </BrowserRouter>
