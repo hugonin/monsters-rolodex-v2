@@ -38,7 +38,7 @@ export default function Card() {
                 {monster.email}
               </div>
               <div className="flex">
-                <LocationMarkerIcon className="h-5 w-5 mx-1" />
+                <LocationMarkerIcon className="h-5 w-5 mx-2" />
                 {monster.address.street} - {monster.address.suite} -{" "}
                 {monster.address.city} - {monster.address.zipcode}{" "}
               </div>

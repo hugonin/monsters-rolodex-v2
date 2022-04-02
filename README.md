@@ -40,12 +40,17 @@ Project is: _in progress_
 
 ## Available Scripts
 
-In the project directory, you can run:
+Start the json server
 
-### `npm start`
+### `json-server --watch ./data/db.json`
+The resources are located at [http://localhost:3000/monsters](http://localhost:3000/monsters)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Then n the project directory, you can run:
+
+### `npm run start`
+
+Runs the app in the development mode at another port.\
+Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
