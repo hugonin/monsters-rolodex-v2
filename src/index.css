@@ -6,6 +6,23 @@
     }
   }
 
+  :root {
+    --my-color: #ECE6F0;
+    /* or any other variables/style */
+  }
+  [data-theme='dark'] {
+    --my-color-primary: #6419E6;
+    --my-color-secondary: #D926A9;
+    --my-color-accent: #1FB2A6;
+    --my-color-base-100: #2A303C;
+  }
+  [data-theme='cupcake'] {
+    --my-color-primary: #c7fafc;
+    --my-color-secondary: #f0ccff;
+    --my-color-accent: #f7d747;
+    --my-color-base-100: #ECE6F0;
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
