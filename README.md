@@ -19,7 +19,7 @@ The project is a part of my React learning path from the ground up to make dynam
 
 ## Technologies
 
-- React 17.0.1
+- React 18.0.0
 - React-Router-Dom" 6.2.2
 - Tailwind css 3.0.23
 - Daisy UI 2.13.3
