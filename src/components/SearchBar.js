@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../hooks/useTheme";
+
 
 export default function SearchBar() {
   const [term, setTerm] = useState("");
@@ -14,6 +16,9 @@ export default function SearchBar() {
 
     navigate(`/search?q=${term}`);
   };
+
+  const { mode } = useTheme();
+
 
   return (
      <div className="flex items-center justify-center">
@@ -41,7 +46,7 @@ export default function SearchBar() {
           <input
             type="search"
             name="q"
-            className={`py-2 text-sm text-white  bg-base rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900`}
+            className={`py-2 text-sm text-white ${mode}  bg-base rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900`}
             placeholder="Search..."
             autoComplete="off"
             onChange={(e) => setTerm(e.target.value)}

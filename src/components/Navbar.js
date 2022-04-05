@@ -7,7 +7,7 @@ import ThemeSelector from "./ThemeSelector";
 export default function Navbar() {
   const { mode } = useTheme()
   return (
-    <div className={`navbar ${mode}  bg-primary-focus`}>
+    <div className={`navbar ${mode}  bg-primary`}>
       <div className="navbar-start">
         <Dropdown />
       </div>

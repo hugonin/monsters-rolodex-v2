@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 
+
 export const ThemeContext = createContext();
 
 const themeReducer = (state, action) => {
@@ -13,13 +14,13 @@ const themeReducer = (state, action) => {
 
 export function ThemeProvider({ children }) {
   const [state, dispatch] = useReducer(themeReducer, {
-    position: "false",
     mode: "dark",
   });
 
   const changeMode = (mode) => {
     dispatch({ type: "CHANGE_MODE", payload: mode });
   };
+
 
   return (
     <ThemeContext.Provider value={{ ...state, changeMode }}>

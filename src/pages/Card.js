@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import { useTheme } from "../hooks/useTheme"
 
 import {
   UserIcon,
@@ -14,21 +15,22 @@ export default function Card() {
   const { id } = useParams();
   const url = "http://localhost:3000/monsters/" + id;
   const { data: monster, isPending, error } = useFetch(url);
+  const { mode } = useTheme()
   return (
     <div>
       {error && <p>{error}</p>}
       {isPending && <p>Loading...</p>}
       {monster && (
         <>
-          <div class={`card container mx-auto w-96 mt-12 mb-12  bg-primary `}>
+          <div className={`card container mx-auto w-96 mt-12 mb-12 ${mode} bg-primary `}>
             <figure>
               <img
                 src={`https://robohash.org/${monster.id}?set=set2`}
                 alt="Robot monsters"
               />
             </figure>
-            <div class="card-body items-center text-center">
-              <h2 class={`card-title  text-accent`}>{monster.name}</h2>
+            <div className="card-body items-center text-center">
+              <h2 className={`card-title ${mode} text-accent`}>{monster.name}</h2>
               <div className="flex">
                 <UserIcon className="h-5 w-5 mx-2" />
                 {monster.username}
