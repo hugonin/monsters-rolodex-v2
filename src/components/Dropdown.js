@@ -11,20 +11,20 @@ export default function Dropdown() {
       <Menu as="div">
         <Menu.Button>
           <label
-            tabindex="0"
-            class={`btn ${mode} bg-base btn-ghost btn-circle`}
+            tabIndex="0"
+            className={`btn ${mode} bg-base btn-ghost btn-circle`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h7"
               />
             </svg>
