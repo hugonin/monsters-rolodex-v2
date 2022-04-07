@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
+import { projectFirestore } from "../firebase/config";
 
-import { UserIcon, MailIcon } from "@heroicons/react/solid";
+import { UserIcon, MailIcon, TrashIcon } from "@heroicons/react/solid";
 
 export default function CardList({ monsters }) {
   const { mode } = useTheme();
@@ -10,6 +11,10 @@ export default function CardList({ monsters }) {
     return <div className="alert alert-error mt-2">No monsters to load</div>;
   }
 
+  const handleClick = (id) => {
+    projectFirestore.collection("monsters").doc(id).delete();
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8 p-8">
       {monsters.map((monster) => (
@@ -17,6 +22,13 @@ export default function CardList({ monsters }) {
           key={monster.id}
           className={`card container mx-auto w-96 ${mode} bg-primary`}
         >
+          <div className="flex flex-row-reverse mt-6 mr-4">
+            <TrashIcon
+              className="h-6 w-6 cursor-pointer "
+              onClick={() => handleClick(monster.id)}
+            />
+          </div>
+
           <figure>
             <img
               src={`https://robohash.org/${monster.id}?set=set2`}

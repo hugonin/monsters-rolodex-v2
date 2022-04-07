@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { projectFirestore } from "../firebase/config"
+
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch.js";
+
 import { useTheme } from "../hooks/useTheme.js";
 
 
@@ -21,14 +23,11 @@ export default function Create() {
   const navigate = useNavigate();
   const { mode } = useTheme();
 
-  const { postData, data, error } = useFetch(
-    "http://localhost:3000/monsters",
-    "POST"
-  );
+ 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postData({
+   const doc = ({
       name,
       username,
       email,
@@ -43,17 +42,18 @@ export default function Create() {
       companybs,
       image,
     });
+
+    try {
+      await projectFirestore.collection('monsters').add(doc)
+      navigate("/")
+
+    } catch(err) {
+      console.log(err)
+    }
+    
   };
 
-  // redirect the user when we get data response
-  useEffect(() => {
-    if (data) {
-      navigate("/ ");
-    } else if (error) {
-      console.log(error);
-    }
-  }, [data, navigate, error]);
-
+ 
   return (
     <div className="container mx-auto px-8 my-12">
       <div className="mt-10 sm:mt-0">
@@ -166,7 +166,7 @@ export default function Create() {
                         name="street-address"
                         id="street-address"
                         onChange={(e) => setAddressStreet(e.target.value)}
-                        value={addressCity}
+                        value={addressStreet}
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
@@ -266,7 +266,7 @@ export default function Create() {
                         htmlFor="company-name"
                         className={`block text-sm font-medium ${mode} text-accent`}
                       >
-                        Company Address:
+                        Company:
                       </label>
                       <input
                         type="text"

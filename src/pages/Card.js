@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import { useTheme } from "../hooks/useTheme"
+import { useTheme } from "../hooks/useTheme";
+
+import { projectFirestore } from "../firebase/config";
 
 import {
   UserIcon,
@@ -13,16 +15,42 @@ import {
 
 export default function Card() {
   const { id } = useParams();
-  const url = "http://localhost:3000/monsters/" + id;
-  const { data: monster, isPending, error } = useFetch(url);
-  const { mode } = useTheme()
+  const { mode } = useTheme();
+
+  const [monster, setMonster] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsPending(true);
+
+    const unSubscribe = projectFirestore
+      .collection("monsters")
+      .doc(id)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          setIsPending(false);
+          setMonster(doc.data());
+        } else {
+          setIsPending(false);
+          setError("Could not find that monster");
+        }
+      });
+
+    return () => unSubscribe();
+  }, [id]);
+
+ 
+
   return (
     <div>
       {error && <p>{error}</p>}
       {isPending && <p>Loading...</p>}
       {monster && (
         <>
-          <div className={`card container mx-auto w-96 mt-12 mb-12 ${mode} bg-primary `}>
+          <div
+            className={`card container mx-auto w-96 mt-12 mb-12 ${mode} bg-primary `}
+          >
             <figure>
               <img
                 src={`https://robohash.org/${monster.id}?set=set2`}
@@ -30,7 +58,9 @@ export default function Card() {
               />
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className={`card-title ${mode} text-accent`}>{monster.name}</h2>
+              <h2 className={`card-title ${mode} text-accent`}>
+                {monster.name}
+              </h2>
               <div className="flex">
                 <UserIcon className="h-5 w-5 mx-2" />
                 {monster.username}
@@ -41,8 +71,8 @@ export default function Card() {
               </div>
               <div className="flex">
                 <LocationMarkerIcon className="h-5 w-5 mx-2" />
-                {monster.address.street} - {monster.address.suite} -{" "}
-                {monster.address.city} - {monster.address.zipcode}{" "}
+                {monster.addressStreet} - {monster.addressSuite} -{" "}
+                {monster.addressCity} - {monster.addressZipcode}{" "}
               </div>
               <div className="flex">
                 <PhoneIcon className="h-5 w-5 mx-2" />
@@ -55,10 +85,10 @@ export default function Card() {
 
               <div className="flex">
                 <OfficeBuildingIcon className="h-5 w-5 mx-2" />
-                {monster.company.name}
+                {monster.companyName}
               </div>
-              <p>{monster.company.catchPhrase}</p>
-              <p>{monster.company.bs}</p>
+              <p>{monster.companyCatchPhrase}</p>
+              <p>{monster.companybs}</p>
             </div>
           </div>
         </>

@@ -1,6 +1,6 @@
 # Monsters Rolodex App
 
-> Simple rolodex app built with React and Tailwind CSS
+> Simple rolodex app built with React, Firebase and Tailwind CSS
 
 ## Table of contents
 
@@ -21,6 +21,7 @@ The project is a part of my React learning path from the ground up to make dynam
 
 - React 18.0.0
 - React-Router-Dom" 6.2.2
+- Firebase 8.5
 - Tailwind css 3.0.23
 - Daisy UI 2.13.3
 
@@ -29,10 +30,13 @@ The project is a part of my React learning path from the ground up to make dynam
 List of features:
 
 - Responsive navigation
-- List of cards with images generated from [@robohash](https://robohash.org/)
-- Add cards
-- Search cards
 - Light / Dark mode
+- List of cards with images generated from [@robohash](https://robohash.org/)
+- Fetching Firestore collection and document
+- Adding / Deleting Firestore Data 
+
+
+
 
 ## Status
 
@@ -40,17 +44,12 @@ Project is: _in progress_
 
 ## Available Scripts
 
-Start the json server
-
-### `json-server --watch ./data/db.json`
-The resources are located at [http://localhost:3000/monsters](http://localhost:3000/monsters)
-
-Then n the project directory, you can run:
+In the project directory, you can run:
 
 ### `npm run start`
 
 Runs the app in the development mode at another port.\
-Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
