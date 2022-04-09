@@ -53,7 +53,12 @@ export default function Create() {
     
   };
 
- 
+ const handleImageChange = (max) => {
+    return Math.floor(Math.random() * max + 1)
+
+ }
+
+
   return (
     <div className="container mx-auto px-8 my-12">
       <div className="mt-10 sm:mt-0">
@@ -127,7 +132,7 @@ export default function Create() {
                         </span>
                         <button
                           onClick={(e) => setImage(e.target.value)}
-                          value={`https://robohash.org/${image.id}?set=set2`}
+                          value= "https://robohash.org/image.id?set=set2"
                           type="button"
                           className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >

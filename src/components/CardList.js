@@ -31,7 +31,7 @@ export default function CardList({ monsters }) {
 
           <figure>
             <img
-              src={`https://robohash.org/${monster.id}?set=set2`}
+              src={monster.image}
               alt="Robot monsters"
             />
           </figure>
